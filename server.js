@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const mustacheExpress = require('mustache-express')
+const ejs = require('ejs')
 const path = require('path')
 const routes = require('./routes/routes')
 require('dotenv').config()
@@ -17,11 +17,8 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'views')))
 
-const mustacheExpressInstance = mustacheExpress()
-mustacheExpressInstance.cache = null
-
-app.engine('mustache', mustacheExpressInstance)
-app.set('view engine', 'mustache')
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 app.use('/', routes)
 
