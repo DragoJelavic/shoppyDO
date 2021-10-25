@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const ejs = require('ejs')
 const path = require('path')
 const routes = require('./routes/routes')
 require('dotenv').config()
