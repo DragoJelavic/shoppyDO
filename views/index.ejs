@@ -22,9 +22,17 @@
   </header>
 
   <form method="post" action="/todos" class="form-primary"> 
-    <input type="text" name="description">
+    <input type="text" name="description" required>
     <button type="submit"> <i class="far fa-plus-square"></i> </button>
+    <div class="error">
+      <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+        <% errors.forEach(error => { %>
+          <p><%= error %></p>
+        <% }) %>
+      <% } %>
+    </div>
   </form>
+  
   <div class="todo-container">
   <ul class="todo-list">
     <% todos.forEach(todo =>{ %>
