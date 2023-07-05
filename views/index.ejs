@@ -36,14 +36,20 @@
   <div class="todo-container">
   <ul class="todo-list">
     <% todos.forEach(todo =>{ %>
-    <div class="todo">
-    <li>
-          <%= todo.description %> - <%= todo.done %>    
-    </li>
-    <form action= <%=`/todos/${todo._id}/completed `%> method = "post">       
-      <button type="submit"> <i class="fas fa-check-square"></i> </input>
-    </form>
-    </div>
+      <div class="todo">
+        <li class="<%= todo.done ? 'done' : '' %>">
+          <%= todo.description %>
+        </li>
+        <form action="<%= `/todos/${todo._id}/completed` %>" method="post">       
+          <button type="submit" class="toggle-button">
+            <% if (todo.done) { %>
+              <i class="fas fa-toggle-on"></i>
+            <% } else { %>
+              <i class="fas fa-toggle-off"></i>
+            <% } %>
+          </button>
+        </form>
+      </div>
     <% }) %>
   </ul>
   </div>
